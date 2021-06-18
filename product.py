@@ -9,12 +9,14 @@ while True:
 	#p.append(price)
 	#p = [name, pricce]
 	#products.append(p)
+	price = int(price)
 	products.append([name, price])
-print(products)
+print(products[0], products[1])
 
 for product in products:
 	print(product[0], '的價格是', product[1])
 
-with open('products.csv', 'w') as f:
+with open('products.csv', 'w', encoding='utf-8') as f:
+	f.write('商品,價格\n')
 	for p in products:
-		f.write(p[0] + ',' + p[1] + '\n')
+		f.write(p[0] + ',' + str(p[1]) + '\n')
