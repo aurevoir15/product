@@ -10,7 +10,7 @@ def read_file(filename):
                     name, price = line.strip().split(',')
                     products.append([name, price])
     return products                
-       
+print('我')
 #讓使用者輸入
 def user_input(products):
     while True:
