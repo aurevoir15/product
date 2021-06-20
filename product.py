@@ -1,21 +1,16 @@
 import os  #operating system
 
+# 讀取檔案
 def read_file(filename):
     products = []
-    if os.path.isfile(filename):
-        print('yeah! 找到檔案了!')
-        with open(filename, 'r', encoding='utf-8') as f:
-            for line in f:
-                if '商品,價格' in line:
-                    continue #跳過這一回
-                name, price = line.strip().split(',')
-                products.append([name, price])
-        print(products)
-    else:
-        print('找不到檔案...')
-       return products
-
-
+    with open(filename, 'r', encoding='utf-8') as f:
+                for line in f:
+                    if '商品,價格' in line:
+                        continue #跳過這一回
+                    name, price = line.strip().split(',')
+                    products.append([name, price])
+    return products                
+       
 #讓使用者輸入
 def user_input(products):
     while True:
@@ -40,11 +35,20 @@ def wirte_file(filename, products):
         for p in products:
             f.write(p[0] + ',' + str(p[1]) + '\n')
 
+# 主程式
+def main():
+    filename = 'products.csv'
+    if os.path.isfile(filename): #檢查檔案在不在
+        print('yeah! 找到檔案了!')
+        products = read_file(filename)
+    else:
+        print('找不到檔案')
 
-products = read_file('products.csv')
-products = user_input(products)
-print_products(products)
-wirte_file('products.csv', products)
+    products = user_input(products)
+    print_products(products)
+    wirte_file('products.csv', products)
+
+main()
 
 
 
